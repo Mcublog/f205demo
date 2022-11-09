@@ -1,0 +1,31 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "SES Project",
+            "includePath": [
+                "${workspaceFolder}/app/**",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "ARM_MATH_CM3",
+                "STM32F205xx",
+                "__STM32F205_SUBFAMILY",
+                "__STM32F2XX_FAMILY",
+                "FREERTOS",
+                "USE_FULL_LL_DRIVER",
+                "USE_HAL_DRIVER"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-arm",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ]
+}

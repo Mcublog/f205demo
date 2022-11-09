@@ -1,0 +1,91 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Build: debug",
+            "command": [
+                "emBuild -threadnum 32 -config Debug -project ${config:SES_PROJECT_NAME} ${workspaceFolder}/ses/${config:SES_PROJECT_NAME}.emProject"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "echo": false,
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "Clean: debug",
+            "command": [
+                "emBuild -config Debug -clean -project ${config:SES_PROJECT_NAME} ${workspaceFolder}/ses/${config:SES_PROJECT_NAME}.emProject;"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "echo": false,
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "Build: release",
+            "command": [
+                "emBuild -threadnum 32 -config Release -project ${config:SES_PROJECT_NAME} ${workspaceFolder}/ses/${config:SES_PROJECT_NAME}.emProject"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "echo": false,
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "Clean: release",
+            "command": [
+                "emBuild -config Release -clean -project ${config:SES_PROJECT_NAME} ${workspaceFolder}/ses/${config:SES_PROJECT_NAME}.emProject;"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "echo": false,
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "Flash: debug",
+            "dependsOn": "Build: debug",
+            "command": "scripts/flash.ps1",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
