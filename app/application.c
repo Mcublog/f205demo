@@ -32,6 +32,5 @@ void application(void)
     {
         HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_RED_Pin);
         HAL_Delay(250);
-        LOG_INFO("Version: %s", FW_VERSION);
     }
 }

@@ -12,12 +12,18 @@ file(GLOB_RECURSE HAL_SOURCES
 )
 
 # Buid Boot target
-add_executable(${F205_TARGET} ${APP_SOURCES} ${HAL_SOURCES} ${RTT_SOURCES} ${STM32F205_CUBE_PATH}/startup_stm32f205xx.s)
+add_executable(${F205_TARGET}
+    ${APP_SOURCES}
+    ${HAL_SOURCES}
+    ${RTT_SOURCES}
+    # ${SMONSTER_SOURCES}
+    ${STM32F205_CUBE_PATH}/startup_stm32f205xx.s)
 
 # Include paths
 target_include_directories(${F205_TARGET} PRIVATE
     ${APP_DIR}
     ${DEBUG_DIR}
+    ${SMONSTER_INCLUDE_DIRS}
     ${HAL_INCLUDE_DIRS}
     ${RTT_INCLUDE_DIRS})
 

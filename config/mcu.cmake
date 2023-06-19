@@ -25,7 +25,19 @@ file(GLOB_RECURSE RTT_SOURCES
     ${RTT_DIR}/RTT/*.S
     ${RTT_DIR}/Syscalls/SEGGER_RTT_Syscalls_GCC.c
 )
+
 # endregion
+
+# region SerialMonster
+set(SMONSTER_DIR ${LIBS_DIR}/serial_monster)
+set(SMONSTER_INCLUDE_DIRS
+    ${SMONSTER_DIR}/include)
+# Add sources
+file(GLOB_RECURSE SMONSTER_SOURCES
+    ${SMONSTER_DIR}/sources/*.c
+)
+# endregion
+
 
 # Put here your symbols (preprocessor defines), one in each line
 # Encapsulate them with double quotes for safety purpose
