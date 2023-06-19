@@ -1,4 +1,3 @@
-
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
@@ -6,23 +5,55 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug: DESKTOP",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: build active target"
+        },
+        {
             "type": "cortex-debug",
             "request": "launch",
-            "name": "Debug: f205",
+            "name": "Debug: MCU",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceRoot}/ses/Output/Debug/Exe/f205_test.elf",
+            "executable": "${command:cmake.launchTargetPath}",
             "servertype": "jlink",
             "device": "STM32F205RG",
             "interface": "swd",
             "serialNumber": "", //If you have more than one J-Link probe, add the serial number here.
             "runToEntryPoint": "main",
-            "svdFile": "${workspaceRoot}/ses/STM32F20x_Registers.xml",
+            "svdFile": "${workspaceRoot}/scripts/STM32F20x.svd",
             "breakAfterReset": true,
             "serverArgs": [
                 "-gui"
             ],
-            "preLaunchTask": "Build: debug",
-            "showDevDebugOutput":"raw"
-        }
+            "preLaunchTask": "CMake: build active target",
+            // "showDevDebugOutput":"raw"
+            // "preRestartCommands": [
+            //     "file ./build/bootloader/f205_boot",
+            //     "load",
+            //     "add-symbol-file ./build/pirit_2f/f205_fw 0x08004004",
+            //     "enable breakpoint",
+            //     "monitor reset"
+            //   ]
+        },
     ]
 }

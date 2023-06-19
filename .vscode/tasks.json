@@ -2,89 +2,74 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "shell",
-            "label": "Build: debug",
-            "command": [
-                "emBuild -threadnum 32 -config Debug -project ${config:SES_PROJECT_NAME} ${workspaceFolder}/ses/${config:SES_PROJECT_NAME}.emProject"
+            "type": "cmake",
+            "label": "CMake: all tests",
+            "command": "build",
+            "targets": [
+                "client_phone_correction_test",
+                "data_structures_test",
+                "sector_swapper_test",
+                "text_printer_test"
             ],
-            "presentation": {
-                "reveal": "always",
-                "echo": false,
-                "clear": true
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
             "problemMatcher": [
                 "$gcc"
-            ]
+            ],
+            "group": "test"
         },
         {
             "type": "shell",
-            "label": "Clean: debug",
-            "command": [
-                "emBuild -config Debug -clean -project ${config:SES_PROJECT_NAME} ${workspaceFolder}/ses/${config:SES_PROJECT_NAME}.emProject;"
+            "label": "Flash: firmware",
+            "command": "JLink",
+            "dependsOn": "CMake: build active target",
+            "args": [
+                "-CommanderScript",
+                "${command:cmake.launchTargetPath}.jlink"
             ],
-            "presentation": {
-                "reveal": "always",
-                "echo": false,
-                "clear": true
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "group": "test"
         },
         {
-            "type": "shell",
-            "label": "Build: release",
-            "command": [
-                "emBuild -threadnum 32 -config Release -project ${config:SES_PROJECT_NAME} ${workspaceFolder}/ses/${config:SES_PROJECT_NAME}.emProject"
-            ],
-            "presentation": {
-                "reveal": "always",
-                "echo": false,
-                "clear": true
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "type": "cmake",
+            "label": "CMake: build active target",
+            "command": "build",
             "problemMatcher": [
                 "$gcc"
-            ]
+            ],
+            "group": {
+                "kind": "build"
+            }
         },
         {
-            "type": "shell",
-            "label": "Clean: release",
-            "command": [
-                "emBuild -config Release -clean -project ${config:SES_PROJECT_NAME} ${workspaceFolder}/ses/${config:SES_PROJECT_NAME}.emProject;"
-            ],
-            "presentation": {
-                "reveal": "always",
-                "echo": false,
-                "clear": true
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "type": "cmake",
+            "label": "CMake: clean rebuild active",
+            "command": "cleanRebuild",
             "problemMatcher": [
                 "$gcc"
-            ]
+            ],
+            "group": {
+                "kind": "build"
+            }
         },
         {
+            "label": "Delete: build dir",
             "type": "shell",
-            "label": "Flash: debug",
-            "dependsOn": "Build: debug",
-            "command": "scripts/flash.ps1",
-            "group": {
-                "kind": "build",
-                "isDefault": true
+            "windows": {
+                "command": "rm",
+                "args": [
+                    "build",
+                    "-r",
+                    "-force"
+                ]
+            },
+            "linux": {
+                "command": "rm",
+                "args": [
+                    "-rf",
+                    "build"
+                ]
+            },
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
             }
         }
     ]
