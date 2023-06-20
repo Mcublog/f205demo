@@ -124,8 +124,8 @@ extern USBD_HandleTypeDef hUsbDeviceHS;
 
 static int8_t CDC_Init_HS(void);
 static int8_t CDC_DeInit_HS(void);
-static int8_t CDC_Control_HS(uint8_t cmd, uint8_t* pbuf, uint16_t length);
-static int8_t CDC_Receive_HS(uint8_t* pbuf, uint32_t *Len);
+static int8_t CDC_Control_HS(uint8_t cmd, uint8_t* pbuf, uint16_t length, uint16_t index);
+static int8_t CDC_Receive_HS(uint8_t* pbuf, uint32_t *Len, uint16_t index);
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_DECLARATION */
 
@@ -178,7 +178,7 @@ static int8_t CDC_DeInit_HS(void)
   * @param  length: Number of data to be sent (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
-static int8_t CDC_Control_HS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
+static int8_t CDC_Control_HS(uint8_t cmd, uint8_t* pbuf, uint16_t length, uint16_t index)
 {
   /* USER CODE BEGIN 10 */
   switch(cmd)
@@ -259,11 +259,11 @@ static int8_t CDC_Control_HS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   * @param  Len: Number of data received (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
-static int8_t CDC_Receive_HS(uint8_t* Buf, uint32_t *Len)
+static int8_t CDC_Receive_HS(uint8_t* Buf, uint32_t *Len, uint16_t index)
 {
   /* USER CODE BEGIN 11 */
   USBD_CDC_SetRxBuffer(&hUsbDeviceHS, &Buf[0]);
-  USBD_CDC_ReceivePacket(&hUsbDeviceHS);
+  USBD_CDC_ReceivePacket(&hUsbDeviceHS, index);
   return (USBD_OK);
   /* USER CODE END 11 */
 }
@@ -275,7 +275,7 @@ static int8_t CDC_Receive_HS(uint8_t* Buf, uint32_t *Len)
   * @param  Len: Number of data to be sent (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL or USBD_BUSY
   */
-uint8_t CDC_Transmit_HS(uint8_t* Buf, uint16_t Len)
+uint8_t CDC_Transmit_HS(uint8_t* Buf, uint16_t Len, uint16_t index)
 {
   uint8_t result = USBD_OK;
   /* USER CODE BEGIN 12 */
@@ -284,7 +284,7 @@ uint8_t CDC_Transmit_HS(uint8_t* Buf, uint16_t Len)
     return USBD_BUSY;
   }
   USBD_CDC_SetTxBuffer(&hUsbDeviceHS, Buf, Len);
-  result = USBD_CDC_TransmitPacket(&hUsbDeviceHS);
+  result = USBD_CDC_TransmitPacket(&hUsbDeviceHS, index);
   /* USER CODE END 12 */
   return result;
 }
