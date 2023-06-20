@@ -46,6 +46,7 @@ set(symbols_SYMB
     $<$<CONFIG:RELASE>:"NDEBUG">
     "USE_HAL_DRIVER"
     "STM32F205xx"
+    "USE_FULL_LL_DRIVER"
 )
 
 set(CPU_PARAMETERS -mthumb
