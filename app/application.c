@@ -31,6 +31,7 @@ void application(void)
     while (1)
     {
         HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_RED_Pin);
+        HAL_GPIO_TogglePin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
         HAL_Delay(250);
     }
 }
