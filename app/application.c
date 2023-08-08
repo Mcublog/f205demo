@@ -28,6 +28,7 @@
 void application(void)
 {
     LOG_INFO("Version: %s", FW_VERSION);
+    HAL_GPIO_WritePin(ON_3V3_P_GPIO_Port, ON_3V3_P_Pin, GPIO_PIN_SET);
     while (1)
     {
         HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_RED_Pin);
