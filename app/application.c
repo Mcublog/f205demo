@@ -10,6 +10,7 @@
  */
 #include "application.h"
 #include "gpio.h"
+#include "i2c.h"
 #include "main.h"
 #include "version.h"
 //>>---------------------- Log control
@@ -21,14 +22,25 @@
 #endif
 #include "log_libs.h"
 //<<----------------------
+
+//>>---------------------- Global variables
+extern I2C_HandleTypeDef hi2c1;
+//<<----------------------
+
 /**
  * @brief
  *
  */
 void application(void)
 {
+    static const uint8_t EEPROM_ADR = 0xA0;
+
     LOG_INFO("Version: %s", FW_VERSION);
     HAL_GPIO_WritePin(ON_3V3_P_GPIO_Port, ON_3V3_P_Pin, GPIO_PIN_SET);
+
+    HAL_StatusTypeDef status = HAL_I2C_IsDeviceReady(&hi2c1, EEPROM_ADR, 10, 100);
+    LOG_INFO("addr: %d is %d", EEPROM_ADR, status);
+
     while (1)
     {
         HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_RED_Pin);
