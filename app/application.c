@@ -39,7 +39,10 @@ void application(void)
     HAL_GPIO_WritePin(ON_3V3_P_GPIO_Port, ON_3V3_P_Pin, GPIO_PIN_SET);
 
     HAL_StatusTypeDef status = HAL_I2C_IsDeviceReady(&hi2c1, EEPROM_ADR, 10, 100);
-    LOG_INFO("addr: %d is %d", EEPROM_ADR, status);
+    if (status == HAL_OK)
+        LOG_INFO("EEPROM: %#x is ready", EEPROM_ADR);
+    else
+        LOG_INFO("EEPROM: %#x is NOT ready", EEPROM_ADR);
 
     while (1)
     {
