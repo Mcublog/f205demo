@@ -25,6 +25,7 @@
 
 //>>---------------------- Global variables
 extern I2C_HandleTypeDef hi2c1;
+extern UART_HandleTypeDef huart6;
 //<<----------------------
 
 //>>---------------------- Local variables
@@ -33,14 +34,11 @@ static const uint16_t EEPROM_ADR_IN_MEM = 0;
 //<<----------------------
 
 /**
- * @brief
+ * @brief Read/write to EEPROM
  *
  */
-void application(void)
+static void eeprom_test(void)
 {
-    LOG_INFO("Version: %s", FW_VERSION);
-    HAL_GPIO_WritePin(ON_3V3_P_GPIO_Port, ON_3V3_P_Pin, GPIO_PIN_SET);
-
     while (ee24_isConnected() == false)
         HAL_Delay(1);
 
@@ -73,6 +71,32 @@ void application(void)
             continue;
         puts("");
     }
+}
+
+/**
+ * @brief
+ *
+ */
+void application(void)
+{
+    LOG_INFO("Version: %s", FW_VERSION);
+    HAL_GPIO_WritePin(ON_3V3_P_GPIO_Port, ON_3V3_P_Pin, GPIO_PIN_SET);
+
+    // eeprom_test();
+
+    uint8_t data[64] = {0};
+    uint8_t data_rx[64] = {0};
+    const uint16_t data_len = sizeof(data);
+    for (uint8_t i = 0; i < data_len; i++)
+        data[i] = i;
+
+    HAL_StatusTypeDef status = HAL_UART_Receive_DMA(&huart6, data_rx, data_len);
+    if (status != HAL_OK)
+        LOG_ERROR("UART Receive Error");
+
+    status = HAL_UART_Transmit_DMA(&huart6, data, data_len);
+    if (status != HAL_OK)
+        LOG_ERROR("UART Transmit Error");
 
     while (1)
     {
