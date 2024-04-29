@@ -81,22 +81,8 @@ void application(void)
 {
     LOG_INFO("Version: %s", FW_VERSION);
     HAL_GPIO_WritePin(ON_3V3_P_GPIO_Port, ON_3V3_P_Pin, GPIO_PIN_SET);
-
+    HAL_GPIO_WritePin(ON_3V3_P_GPIO_Port, ON_3V3_P_Pin, GPIO_PIN_SET);
     // eeprom_test();
-
-    uint8_t data[64] = {0};
-    uint8_t data_rx[64] = {0};
-    const uint16_t data_len = sizeof(data);
-    for (uint8_t i = 0; i < data_len; i++)
-        data[i] = i;
-
-    HAL_StatusTypeDef status = HAL_UART_Receive_DMA(&huart6, data_rx, data_len);
-    if (status != HAL_OK)
-        LOG_ERROR("UART Receive Error");
-
-    status = HAL_UART_Transmit_DMA(&huart6, data, data_len);
-    if (status != HAL_OK)
-        LOG_ERROR("UART Transmit Error");
 
     while (1)
     {
