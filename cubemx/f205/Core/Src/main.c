@@ -21,7 +21,6 @@
 #include "dma.h"
 #include "i2c.h"
 #include "usart.h"
-#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -40,7 +39,14 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#define A	142
+#define B	126
+#define C	213
+#define D	210
+#define E	190
+#define F	178
+#define G	211
+#define A2	118
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -57,7 +63,19 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void BuzzerPlayNote(int prescalerfornote, int NoteDurationMs)
+{
+	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
 
+		for(int i = 0; i<NoteDurationMs ; i++)
+		{
+			TIM2->PSC = prescalerfornote; //change prescaler for have the frequency of our note
+			HAL_Delay(1);
+		}
+		TIM2->PSC=0;
+	HAL_TIM_PWM_Stop(&htim2,TIM_CHANNEL_1);
+
+}
 /* USER CODE END 0 */
 
 /**
@@ -89,7 +107,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_USB_DEVICE_Init();
   MX_I2C1_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
@@ -103,6 +120,24 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		//example
+	  BuzzerPlayNote(A,500);
+	  HAL_Delay(10);
+	  BuzzerPlayNote(B,500);
+	  HAL_Delay(10);
+	  BuzzerPlayNote(C,500);
+	  HAL_Delay(10);
+	  BuzzerPlayNote(D,500);
+	  HAL_Delay(10);
+	  BuzzerPlayNote(E,500);
+	  HAL_Delay(10);
+	  BuzzerPlayNote(F,500);
+	  HAL_Delay(10);
+	  BuzzerPlayNote(G,500);
+	  HAL_Delay(10);
+	  BuzzerPlayNote(A2,500);
+    while(1){}
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -113,8 +148,8 @@ int main(void)
   */
 void SystemClock_Config(void)
 {
-  LL_FLASH_SetLatency(LL_FLASH_LATENCY_3);
-  while(LL_FLASH_GetLatency()!= LL_FLASH_LATENCY_3)
+  LL_FLASH_SetLatency(LL_FLASH_LATENCY_2);
+  while(LL_FLASH_GetLatency()!= LL_FLASH_LATENCY_2)
   {
   }
   LL_RCC_HSE_Enable();
@@ -124,8 +159,7 @@ void SystemClock_Config(void)
   {
 
   }
-  LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_6, 192, LL_RCC_PLLP_DIV_4);
-  LL_RCC_PLL_ConfigDomain_48M(LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_6, 192, LL_RCC_PLLQ_DIV_8);
+  LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_6, 192, LL_RCC_PLLP_DIV_6);
   LL_RCC_PLL_Enable();
 
    /* Wait till PLL is ready */
@@ -143,7 +177,7 @@ void SystemClock_Config(void)
   {
 
   }
-  LL_SetSystemCoreClock(96000000);
+  LL_SetSystemCoreClock(64000000);
 
    /* Update the time base */
   if (HAL_InitTick (TICK_INT_PRIORITY) != HAL_OK)

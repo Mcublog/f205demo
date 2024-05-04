@@ -58,9 +58,7 @@ set(ARM_NONE_EABI_FLAGS
     ${CPU_PARAMETERS}
     # -Wall
     # -Wextra
-    -Wpedantic
-    -Wno-unused-parameter,
-    -Wno-sign-compare,
+    # -Wpedantic
     -fdata-sections
     -ffunction-sections
     -fdiagnostics-color=always
@@ -88,6 +86,8 @@ set(F205_LINKER_OPTION
     -Wl,--start-group
     -fno-exceptions
     -fno-rtti
+    -Wno-unused-parameter,
+    -Wno-sign-compare,
     -Wl,--end-group
     -Wl,--print-memory-usage
     -Wl,--gc-sections # removed unused functions
