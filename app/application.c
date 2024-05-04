@@ -173,17 +173,14 @@ void application(void)
     // eeprom_test();
     dwt_init();
 
-    // buzzerDriverInit();
-
     int melodyCount = sizeof(melodySizes) / sizeof(uint32_t);
-    int melodyIndex = 0;
+    int melodyIndex = 1;
 
     play(melody[melodyIndex], melodySizes[melodyIndex], 325);
 
     while (1)
     {
         HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_RED_Pin);
-        // HAL_GPIO_TogglePin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
-        HAL_Delay(250);
+        delay(250);
     }
 }

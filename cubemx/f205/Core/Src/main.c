@@ -63,19 +63,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void BuzzerPlayNote(int prescalerfornote, int NoteDurationMs)
-{
-	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
 
-		for(int i = 0; i<NoteDurationMs ; i++)
-		{
-			TIM2->PSC = prescalerfornote; //change prescaler for have the frequency of our note
-			HAL_Delay(1);
-		}
-		TIM2->PSC=0;
-	HAL_TIM_PWM_Stop(&htim2,TIM_CHANNEL_1);
-
-}
 /* USER CODE END 0 */
 
 /**
@@ -120,23 +108,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		//example
-	  BuzzerPlayNote(A,500);
-	  HAL_Delay(10);
-	  BuzzerPlayNote(B,500);
-	  HAL_Delay(10);
-	  BuzzerPlayNote(C,500);
-	  HAL_Delay(10);
-	  BuzzerPlayNote(D,500);
-	  HAL_Delay(10);
-	  BuzzerPlayNote(E,500);
-	  HAL_Delay(10);
-	  BuzzerPlayNote(F,500);
-	  HAL_Delay(10);
-	  BuzzerPlayNote(G,500);
-	  HAL_Delay(10);
-	  BuzzerPlayNote(A2,500);
-    while(1){}
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
