@@ -4,6 +4,7 @@ include(${PROJECT_SOURCE_DIR}/config/mcu.cmake)
 # Add sources
 file(GLOB_RECURSE APP_SOURCES
     ${APP_DIR}/*.c
+    ${APP_DIR}/*.cpp
 )
 
 file(GLOB_RECURSE HAL_SOURCES
@@ -50,8 +51,9 @@ target_compile_options(${F205_TARGET}
     PRIVATE
     ${ARM_NONE_EABI_FLAGS}
     -Wno-missing-braces
-    -Wno-pointer-sign
 )
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-volatile")
 
 # Linker options
 target_link_options(${F205_TARGET} PRIVATE ${F205_LINKER_OPTION})

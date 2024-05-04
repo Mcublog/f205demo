@@ -86,8 +86,10 @@ set(F205_LINKER_OPTION
     -Wl,--start-group
     -fno-exceptions
     -fno-rtti
-    -Wno-unused-parameter,
-    -Wno-sign-compare,
+    -Wno-unused-parameter
+    -Wno-sign-compare
+    -Wno-pointer-sign
+    -Wno-volatile
     -Wl,--end-group
     -Wl,--print-memory-usage
     -Wl,--gc-sections # removed unused functions

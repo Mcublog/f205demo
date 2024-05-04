@@ -191,7 +191,7 @@
 
 #define NOTE_DS8 4978
 
-const uint32_t marioMelody[] = {
+const int32_t marioMelody[] = {
     // Super Mario Bros theme
     // Score available at https://musescore.com/user/2123/scores/2145
     // Theme by Koji Kondo
@@ -853,7 +853,7 @@ const uint32_t marioMelody[] = {
     -2,
 };
 
-const uint32_t melody_StarWarsTheme[] = {
+const int32_t melody_StarWarsTheme[] = {
     // Dart Vader theme (Imperial March) - Star wars
     // Score available at https://musescore.com/user/202909/scores/1141521
     // The tenor saxophone part was used
@@ -880,7 +880,7 @@ const uint32_t melody_StarWarsTheme[] = {
     NOTE_DS6, 8,  NOTE_CS6, 4,  NOTE_C6,  8,  NOTE_AS5, 4,  NOTE_GS5, 8,
     NOTE_G5,  4,  NOTE_F5,  8,  NOTE_C6,  1};
 
-const uint32_t melody_NokiaTune[] = {
+const int32_t melody_NokiaTune[] = {
     // Nokia Ringtone
     // Score available at https://musescore.com/user/29944637/scores/5266155
     NOTE_E5,  8, NOTE_D5, 8, NOTE_FS4, 4, NOTE_GS4, 4, NOTE_CS5, 8,
@@ -888,7 +888,7 @@ const uint32_t melody_NokiaTune[] = {
     NOTE_CS4, 4, NOTE_E4, 4, NOTE_A4,  2,
 };
 
-const uint32_t melody_CannonInD[] = {
+const int32_t melody_CannonInD[] = {
     // Cannon in D - Pachelbel
     // Score available at https://musescore.com/user/4710311/scores/1975521
     // C F
@@ -923,11 +923,49 @@ const uint32_t melody_CannonInD[] = {
     NOTE_FS4, 8, NOTE_G4,  8, NOTE_A4,  2,
 };
 
-const uint32_t *melody[] = {marioMelody, melody_StarWarsTheme, melody_NokiaTune,
-                            melody_CannonInD};
+const int32_t melody_gotchi_fault[] = {
+    // Never Gonna Give You Up - Rick Astley
+    // Score available at
+    // https://musescore.com/chlorondria_5/never-gonna-give-you-up_alto-sax
+    // Arranged by Chlorondria
+    NOTE_A4,  16, NOTE_B4,  16, NOTE_D5,  16, NOTE_B4,  16,
 
-const uint32_t melodySizes[] = {sizeof(marioMelody) / sizeof(uint32_t),
-                                sizeof(melody_StarWarsTheme) / sizeof(uint32_t),
-                                sizeof(melody_NokiaTune) / sizeof(uint32_t),
-                                sizeof(melody_CannonInD) / sizeof(uint32_t)};
+    NOTE_FS5, -8, NOTE_FS5, -8, NOTE_E5,  -4, NOTE_A4,  16, NOTE_B4, 16,
+    NOTE_D5,  16, NOTE_B4,  16, NOTE_E5,  -8, NOTE_E5,  -8, NOTE_D5, -8,
+    NOTE_CS5, 16, NOTE_B4,  8,  NOTE_A4,  16, NOTE_B4,  16, NOTE_D5, 16,
+    NOTE_B4,  16, NOTE_D5,  4,  NOTE_E5,  8,  NOTE_CS5, -8, NOTE_B4, 16,
+    NOTE_A4,  4,  NOTE_A4,  8,
+
+    NOTE_E5,  4,  NOTE_D5,  2,  NOTE_A4,  16, NOTE_B4,  16, NOTE_D5, 16,
+    NOTE_B4,  16, // 40
+    NOTE_FS5, -8, NOTE_FS5, -8, NOTE_E5,  -4, NOTE_A4,  16, NOTE_B4, 16,
+    NOTE_D5,  16, NOTE_B4,  16, NOTE_A5,  4,  NOTE_CS5, 8,  NOTE_D5, -8,
+    NOTE_CS5, 16, NOTE_B4,  8,  NOTE_A4,  16, NOTE_B4,  16, NOTE_D5, 16,
+    NOTE_B4,  16, NOTE_D5,  4,  NOTE_E5,  8,  NOTE_CS5, -8, NOTE_B4, 16,
+    NOTE_A4,  4,  NOTE_A4,  8,  NOTE_E5,  4,  NOTE_D5,  2,  NOTE_A4, 16,
+    NOTE_B4,  16, NOTE_D5,  16, NOTE_B4,  16,
+
+    NOTE_FS5, -8, NOTE_FS5, -8, NOTE_E5,  -4, NOTE_A4,  16, NOTE_B4, 16,
+    NOTE_D5,  16, NOTE_B4,  16, // 45
+    NOTE_A5,  4,  NOTE_CS5, 8,  NOTE_D5,  -8, NOTE_CS5, 16, NOTE_B4, 8,
+    NOTE_A4,  16, NOTE_B4,  16, NOTE_D5,  16, NOTE_B4,  16, NOTE_D5, 4,
+    NOTE_E5,  8,  NOTE_CS5, -8, NOTE_B4,  16, NOTE_A4,  4,  NOTE_A4, 8,
+    NOTE_E5,  4,  NOTE_D5,  2,  NOTE_A4,  16, NOTE_B4,  16, NOTE_D5, 16,
+    NOTE_B4,  16, NOTE_FS5, -8, NOTE_FS5, -8, NOTE_E5,  -4, NOTE_A4, 16,
+    NOTE_B4,  16, NOTE_D5,  16, NOTE_B4,  16, // 45
+
+    NOTE_A5,  4,  NOTE_CS5, 8,  NOTE_D5,  -8, NOTE_CS5, 16, NOTE_B4, 8,
+    NOTE_A4,  16, NOTE_B4,  16, NOTE_D5,  16, NOTE_B4,  16, NOTE_D5, 4,
+    NOTE_E5,  8,  NOTE_CS5, -8, NOTE_B4,  16, NOTE_A4,  4,  NOTE_A4, 8,
+
+    NOTE_E5,  4,  NOTE_D5,  2,  REST,     4};
+
+const int32_t *melody[] = {marioMelody, melody_StarWarsTheme, melody_NokiaTune,
+                            melody_CannonInD, melody_gotchi_fault};
+
+const uint32_t melodySizes[] = {sizeof(marioMelody) / sizeof(int32_t),
+                                sizeof(melody_StarWarsTheme) / sizeof(int32_t),
+                                sizeof(melody_NokiaTune) / sizeof(int32_t),
+                                sizeof(melody_CannonInD) / sizeof(int32_t),
+                                sizeof(melody_gotchi_fault) / sizeof(int32_t)};
 #endif /* MELODY_H_ */
