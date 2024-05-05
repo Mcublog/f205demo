@@ -1,15 +1,15 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
-    "SES_PROJECT_NAME": "f205_test",
-    "command-runner.commands": {
-        "Open: SES": "emStudio SES/${config:SES_PROJECT_NAME}.emProject &",
-        "Open: RTT Viewer": "JLinkRTTViewer &"
-    },
     "doxdocgen.generic.authorEmail": "v.konovalo@crystals.ru",
     "doxdocgen.generic.authorName": "Viacheslav",
     "doxdocgen.file.copyrightTag": [
         "@copyright CSI Copyright (c) {year}"
     ],
-    "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: Microsoft, ColumnLimit: 90, IndentWidth: 4, ColumnLimit: 0}",
-    "diffEditor.ignoreTrimWhitespace": false
+    "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: Microsoft, ColumnLimit: 80, IndentWidth: 4}",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "cmake.generator": "Unix Makefiles",
+    "cortex-debug.variableUseNaturalFormat": false,
+    "files.associations": {
+        "log_libs.h": "c"
+    }
 }

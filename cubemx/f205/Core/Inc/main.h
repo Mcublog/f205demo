@@ -29,6 +29,16 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f2xx_hal.h"
 
+#include "stm32f2xx_ll_rcc.h"
+#include "stm32f2xx_ll_bus.h"
+#include "stm32f2xx_ll_system.h"
+#include "stm32f2xx_ll_exti.h"
+#include "stm32f2xx_ll_cortex.h"
+#include "stm32f2xx_ll_utils.h"
+#include "stm32f2xx_ll_pwr.h"
+#include "stm32f2xx_ll_dma.h"
+#include "stm32f2xx_ll_gpio.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -57,10 +67,22 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_DEBUG_Pin GPIO_PIN_13
+#define LED_DEBUG_GPIO_Port GPIOC
+#define Buzzer_Pin GPIO_PIN_0
+#define Buzzer_GPIO_Port GPIOA
 #define LED_RED_Pin GPIO_PIN_4
 #define LED_RED_GPIO_Port GPIOC
 #define LED_BLUE_Pin GPIO_PIN_5
 #define LED_BLUE_GPIO_Port GPIOC
+#define PWDN_Pin GPIO_PIN_0
+#define PWDN_GPIO_Port GPIOB
+#define PWDN_EXTI_IRQn EXTI0_IRQn
+#define ON_3V3_P_Pin GPIO_PIN_15
+#define ON_3V3_P_GPIO_Port GPIOA
+#define ON_5V_Pin GPIO_PIN_10
+#define ON_5V_GPIO_Port GPIOC
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
