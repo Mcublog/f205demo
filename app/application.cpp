@@ -20,8 +20,8 @@
 #include "i2c.h"
 #include "main.h"
 #include "melodies/bumer.h"
+#include "melodies/melody.h"
 #include "melodies/tone.hpp"
-#include "melody.h"
 #include "version.h"
 //>>---------------------- Log control
 #define LOG_MODULE_NAME app
@@ -145,7 +145,7 @@ void application(void)
 
     play(melody[melodyIndex], melodySizes[melodyIndex], (int)(325 / 2));
 
-    bumer(0);
+    // bumer(0);
 
     while (1)
     {
