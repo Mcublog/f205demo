@@ -22,7 +22,7 @@ include(config/desktop.cmake)
 include(config/utils.cmake)
 # endregion
 
-project(f205_demo VERSION 0.0.1 LANGUAGES C CXX ASM)
+project(f205_demo VERSION 0.1.0 LANGUAGES C CXX ASM)
 
 LOG_INFO("Version:.........." ${CMAKE_PROJECT_VERSION})
 LOG_INFO("Host system:......" ${CMAKE_SYSTEM_NAME})
