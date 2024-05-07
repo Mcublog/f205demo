@@ -71,6 +71,19 @@
             "presentation": {
                 "reveal": "silent"
             }
+        },
+        {
+            "type": "shell",
+            "dependsOn": "CMake: build active target",
+            "label": "OpenOcd: flash",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "command": "scripts/flash.sh",
+            "args": [
+                "${command:cmake.launchTargetPath}"
+            ],
+            "group": "test"
         }
     ]
 }
