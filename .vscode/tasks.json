@@ -79,9 +79,13 @@
             "options": {
                 "cwd": "${workspaceRoot}"
             },
-            "command": "scripts/flash.sh",
+            "command": "openocd",
             "args": [
-                "${command:cmake.launchTargetPath}"
+                "-f",
+                "interface/wch-cmsis-dap.cfg",
+                "-f",
+                "target/stm32f4x.cfg",
+                "-c", "program ${command:cmake.launchTargetPath} verify reset exit"
             ],
             "group": "test"
         }
