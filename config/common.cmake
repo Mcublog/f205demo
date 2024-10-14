@@ -1,5 +1,5 @@
 # region GLOBAL PROPERTIES
-set(STM32F205_CUBE_PATH           ${PROJECT_SOURCE_DIR}/cubemx/f205)
+set(V15_1_CUBE_PATH               ${PROJECT_SOURCE_DIR}/cubemx/v15_1)
 set(DESKTOP_TARGET_PATH           ${PROJECT_SOURCE_DIR}/targets/desktop)
 
 set(APP_DIR     ${PROJECT_SOURCE_DIR}/app)

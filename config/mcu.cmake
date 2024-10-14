@@ -1,14 +1,14 @@
 # region MCU GLOBAL PROPERTY
-set(F205_TARGET               f205fw)
+set(V15_1_TARGET               fw_rev15_1)
 
 # region HAL
 set(HAL_INCLUDE_DIRS
     # Put here your include dirs, one in each line, relative to CMakeLists.txt file location
-    ${STM32F205_CUBE_PATH}/Core/Inc
-    ${STM32F205_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc
-    ${STM32F205_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc/Legacy
-    ${STM32F205_CUBE_PATH}/Drivers/CMSIS/Device/ST/STM32F2xx/Include
-    ${STM32F205_CUBE_PATH}/Drivers/CMSIS/Include
+    ${V15_1_CUBE_PATH}/Core/Inc
+    ${V15_1_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc
+    ${V15_1_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc/Legacy
+    ${V15_1_CUBE_PATH}/Drivers/CMSIS/Device/ST/STM32F2xx/Include
+    ${V15_1_CUBE_PATH}/Drivers/CMSIS/Include
 )
 # endregion
 
