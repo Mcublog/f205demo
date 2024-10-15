@@ -1,5 +1,5 @@
 # region GLOBAL PROPERTIES
-set(V15_1_CUBE_PATH               ${PROJECT_SOURCE_DIR}/cubemx/v15_1)
+set(V15_1_CDC_CUBE_PATH           ${PROJECT_SOURCE_DIR}/cubemx/v15_1)
 set(DESKTOP_TARGET_PATH           ${PROJECT_SOURCE_DIR}/targets/desktop)
 
 set(APP_DIR     ${PROJECT_SOURCE_DIR}/app)

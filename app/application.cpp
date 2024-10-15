@@ -15,9 +15,9 @@
 
 #include "application.h"
 #include "dwt/dwt.h"
-#include "ee24/ee24.h"
+// #include "ee24/ee24.h"
 #include "gpio.h"
-#include "i2c.h"
+// #include "i2c.h"
 #include "main.h"
 #include "melodies/bumer.h"
 #include "melodies/melody.h"
@@ -30,8 +30,8 @@
 //<<----------------------
 
 //>>---------------------- Global variables
-extern I2C_HandleTypeDef hi2c1;
-extern UART_HandleTypeDef huart6;
+// extern I2C_HandleTypeDef hi2c1;
+// extern UART_HandleTypeDef huart6;
 //<<----------------------
 
 //>>---------------------- Local variables
@@ -43,41 +43,41 @@ static const uint16_t EEPROM_ADR_IN_MEM = 0;
  * @brief Read/write to EEPROM
  *
  */
-static void eeprom_test(void)
-{
-    while (ee24_isConnected() == false)
-        HAL_Delay(1);
+// static void eeprom_test(void)
+// {
+//     while (ee24_isConnected() == false)
+//         HAL_Delay(1);
 
-    if (ee24_isConnected())
-        LOG_INFO("EEPROM is connected");
+//     if (ee24_isConnected())
+//         LOG_INFO("EEPROM is connected");
 
-    bool res = ee24_eraseChip();
-    LOG_INFO("ee24_eraseChip: %d", res);
+//     bool res = ee24_eraseChip();
+//     LOG_INFO("ee24_eraseChip: %d", res);
 
-    HAL_Delay(100);
-    uint8_t data[1024] = {0};
-    for (uint32_t i = 0; i < 1024; i++)
-        data[i] = (i + 1);
+//     HAL_Delay(100);
+//     uint8_t data[1024] = {0};
+//     for (uint32_t i = 0; i < 1024; i++)
+//         data[i] = (i + 1);
 
-    res = ee24_write(0, data, 1024, 1000);
-    LOG_INFO("ee24_write: %d", res);
+//     res = ee24_write(0, data, 1024, 1000);
+//     LOG_INFO("ee24_write: %d", res);
 
-    res = ee24_read(0, data, 1024, 100);
-    LOG_INFO("ee24_read: %d", res);
+//     res = ee24_read(0, data, 1024, 100);
+//     LOG_INFO("ee24_read: %d", res);
 
-    for (uint32_t i = 0; i < 1024; i++)
-    {
-        if (data[i] != ((i + 1) & 0xFF))
-            LOG_ERROR("0x%02x != 0x%02x", data[i], (i + 1) & 0xFF);
-        printf("0x%02x ", data[i]);
-        HAL_Delay(1);
-        if (i == 0)
-            continue;
-        if (i % 15)
-            continue;
-        puts("");
-    }
-}
+//     for (uint32_t i = 0; i < 1024; i++)
+//     {
+//         if (data[i] != ((i + 1) & 0xFF))
+//             LOG_ERROR("0x%02x != 0x%02x", data[i], (i + 1) & 0xFF);
+//         printf("0x%02x ", data[i]);
+//         HAL_Delay(1);
+//         if (i == 0)
+//             continue;
+//         if (i % 15)
+//             continue;
+//         puts("");
+//     }
+// }
 
 
 void play(const int32_t *melody, size_t melodySize, int tempo)
@@ -140,16 +140,16 @@ void application(void)
     // eeprom_test();
     dwt_init();
 
-    int melodyCount = sizeof(melodySizes) / sizeof(uint32_t);
-    int melodyIndex = 4;
+    // int melodyCount = sizeof(melodySizes) / sizeof(uint32_t);
+    int melodyIndex = 0;
 
-    play(melody[melodyIndex], melodySizes[melodyIndex], (int)(325 / 2));
+    // play(melody[melodyIndex], melodySizes[melodyIndex], (int)(300));
 
     // bumer(0);
 
     while (1)
     {
-        HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_RED_Pin);
+        HAL_GPIO_TogglePin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
         delay((uint32_t)250);
     }
 }

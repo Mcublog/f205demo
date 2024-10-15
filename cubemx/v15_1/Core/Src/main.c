@@ -21,11 +21,12 @@
 #include "dma.h"
 #include "i2c.h"
 #include "usart.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "application.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -35,14 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define A   (142)
-#define B   (126)
-#define C   (213)
-#define D   (210)
-#define E   (190)
-#define F   (178)
-#define G   (211)
-#define A2  (118)
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -99,8 +93,9 @@ int main(void)
   MX_DMA_Init();
   MX_I2C1_Init();
   MX_USART6_UART_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-  application();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -132,6 +127,7 @@ void SystemClock_Config(void)
 
   }
   LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_6, 192, LL_RCC_PLLP_DIV_6);
+  LL_RCC_PLL_ConfigDomain_48M(LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_6, 192, LL_RCC_PLLQ_DIV_8);
   LL_RCC_PLL_Enable();
 
    /* Wait till PLL is ready */
