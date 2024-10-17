@@ -5,3 +5,4 @@ ses/Output/
 *.jlink
 .vscode/.cortex-debug.peripherals.state.json
 build/
+cubemx/v15_1/Makefile

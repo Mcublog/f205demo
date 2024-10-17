@@ -1,6 +1,18 @@
 include(${PROJECT_SOURCE_DIR}/config/common.cmake)
 include(${PROJECT_SOURCE_DIR}/config/mcu.cmake)
 
+
+# region HAL
+set(HAL_INCLUDE_DIRS
+    # Put here your include dirs, one in each line, relative to CMakeLists.txt file location
+    ${V15_1_CDC_CUBE_PATH}/Core/Inc
+    ${V15_1_CDC_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc
+    ${V15_1_CDC_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc/Legacy
+    ${V15_1_CDC_CUBE_PATH}/Drivers/CMSIS/Device/ST/STM32F2xx/Include
+    ${V15_1_CDC_CUBE_PATH}/Drivers/CMSIS/Include
+)
+# endregion
+
 # Add sources
 file(GLOB_RECURSE APP_SOURCES
     ${APP_DIR}/*.c

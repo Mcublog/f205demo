@@ -1,16 +1,6 @@
 # region MCU GLOBAL PROPERTY
 set(V15_1_CDC_TARGET               fw_cdc_rev15_1)
-
-# region HAL
-set(HAL_INCLUDE_DIRS
-    # Put here your include dirs, one in each line, relative to CMakeLists.txt file location
-    ${V15_1_CDC_CUBE_PATH}/Core/Inc
-    ${V15_1_CDC_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc
-    ${V15_1_CDC_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc/Legacy
-    ${V15_1_CDC_CUBE_PATH}/Drivers/CMSIS/Device/ST/STM32F2xx/Include
-    ${V15_1_CDC_CUBE_PATH}/Drivers/CMSIS/Include
-)
-# endregion
+set(V15_1_COMP_TARGET              fw_comp_rev15_1)
 
 # region RTT
 set(RTT_LIB rtt)
