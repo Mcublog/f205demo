@@ -68,7 +68,8 @@
             "svdFile": "${workspaceRoot}/resources/STM32F20x.svd",
             "configFiles": [
                 "interface/wch-cmsis-dap.cfg",
-                "target/stm32f2x.cfg"
+                "target/stm32f2x.cfg",
+                // "debug/rtt.cfg"
             ],
             "preLaunchCommands": [
                 "set mem inaccessible-by-default off",
@@ -76,7 +77,7 @@
             ],
             "postLaunchCommands": [
                 "monitor reset init",
-                "monitor sleep 100"
+                "monitor sleep 100",
             ],
             "rttConfig": {
                 "enabled": true,

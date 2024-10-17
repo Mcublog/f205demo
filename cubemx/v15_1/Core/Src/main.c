@@ -26,7 +26,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "usbd_core.h"
+#include "stm32f2xx_hal_pcd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,7 +42,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+extern USBD_HandleTypeDef hUsbDeviceHS;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -58,7 +59,15 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void UsbReconnect(void)
+{
+    USBD_Stop(&hUsbDeviceHS);
+    USBD_Start(&hUsbDeviceHS);
+    HAL_Delay(200);
+    HAL_NVIC_EnableIRQ(OTG_HS_EP1_OUT_IRQn);
+    HAL_NVIC_EnableIRQ(OTG_HS_EP1_IN_IRQn);
+    HAL_NVIC_EnableIRQ(OTG_HS_IRQn);
+}
 /* USER CODE END 0 */
 
 /**
@@ -95,7 +104,8 @@ int main(void)
   MX_USART6_UART_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-
+  // USBD_Stop(&hUsbDeviceHS);
+  UsbReconnect();
   /* USER CODE END 2 */
 
   /* Infinite loop */
