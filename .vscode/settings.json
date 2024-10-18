@@ -10,6 +10,7 @@
     "cmake.generator": "Unix Makefiles",
     "cortex-debug.variableUseNaturalFormat": false,
     "files.associations": {
-        "log_libs.h": "c"
+        "log_libs.h": "c",
+        "usbd_composite.h": "c"
     }
 }

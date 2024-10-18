@@ -43,6 +43,7 @@ void dwt_delay_us(uint32_t us)
 void dwt_reset(void)
 {
     DWT->CYCCNT = 0U;
+
 }
 
 /**

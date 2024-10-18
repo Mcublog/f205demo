@@ -1,16 +1,6 @@
 # region MCU GLOBAL PROPERTY
-set(F205_TARGET               f205fw)
-
-# region HAL
-set(HAL_INCLUDE_DIRS
-    # Put here your include dirs, one in each line, relative to CMakeLists.txt file location
-    ${STM32F205_CUBE_PATH}/Core/Inc
-    ${STM32F205_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc
-    ${STM32F205_CUBE_PATH}/Drivers/STM32F2xx_HAL_Driver/Inc/Legacy
-    ${STM32F205_CUBE_PATH}/Drivers/CMSIS/Device/ST/STM32F2xx/Include
-    ${STM32F205_CUBE_PATH}/Drivers/CMSIS/Include
-)
-# endregion
+set(V15_1_CDC_TARGET               fw_cdc_rev15_1)
+set(V15_1_COMP_TARGET              fw_comp_rev15_1)
 
 # region RTT
 set(RTT_LIB rtt)
@@ -71,7 +61,7 @@ set(ARM_NONE_EABI_FLAGS
 )
 
 # Set linker script
-set(F205_LINKER_SCRIPT ${PROJECT_SOURCE_DIR}/cubemx/f205/STM32F205RGTx_FLASH.ld)
+set(F205_LINKER_SCRIPT ${PROJECT_SOURCE_DIR}/cubemx/v15_1/STM32F205RGTx_FLASH.ld)
 
 set(F205_LINKER_OPTION
     -T${F205_LINKER_SCRIPT}
