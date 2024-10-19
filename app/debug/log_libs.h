@@ -17,8 +17,10 @@ extern "C" {
 #define LOG_INFO(STR, ...)    do{ if (LOG_MODULE_LEVEL>2) {log_printf("inf", TOSTRING(LOG_MODULE_NAME), STR, ##__VA_ARGS__);}  }while(0)
 #define LOG_DEBUG(STR,...)    do{ if (LOG_MODULE_LEVEL>3) {log_printf("dbg", TOSTRING(LOG_MODULE_NAME), STR, ##__VA_ARGS__);} }while(0)
 #define LOG_RAW_INFO(STR,...) do{ if (LOG_MODULE_LEVEL>2) {printf(STR, ##__VA_ARGS__);} }while(0)
+#define LOG_RAW_INFO_ARRAY(STR, A, N) do{ if (LOG_MODULE_LEVEL>2) {log_array_printf(STR, A, N);} }while(0)
 
 void log_printf(const char *prefix, const char *module, const char * sFormat, ...);
+void log_array_printf(const char *prefix, const char *array, size_t size);
 
 #ifdef __cplusplus
 }
