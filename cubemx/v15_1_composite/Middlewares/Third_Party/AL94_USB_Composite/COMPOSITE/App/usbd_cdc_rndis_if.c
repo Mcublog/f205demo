@@ -30,6 +30,12 @@
 #include "http_cgi_ssi.h"
 #include "ethernetif.h"
 */
+#include "rndis_debug.h"
+//>>---------------------- Log control
+#define LOG_MODULE_NAME   rndis
+#define LOG_MODULE_LEVEL  (3)
+#include "log_libs.h"
+//<<----------------------
 
 #include "usbd_cdc_rndis_if.h"
 
@@ -134,9 +140,13 @@ static int8_t CDC_RNDIS_Itf_Control(uint8_t cmd, uint8_t *pbuf, uint16_t length)
   {
     case CDC_RNDIS_SEND_ENCAPSULATED_COMMAND:
       /* Add your code here */
+      LOG_INFO("CDC_RNDIS_SEND_ENCAPSULATED_COMMAND");
       break;
 
     case CDC_RNDIS_GET_ENCAPSULATED_RESPONSE:
+      LOG_INFO("CDC_RNDIS_GET_ENCAPSULATED_RESPONSE: %d", length);
+      rndisDumpMsg((const RndisMsg *)pbuf, length);
+
       /* Check if this is the first time we enter */
       if (hcdc_cdc_rndis->LinkStatus == 0U)
       {
@@ -145,12 +155,15 @@ static int8_t CDC_RNDIS_Itf_Control(uint8_t cmd, uint8_t *pbuf, uint16_t length)
         /*
           Add your code here
         */
+        LOG_INFO("Link UP");
+       // USBD_CtlSendData(&hUsbDevice, rndisContext.encapsulatedResp, rndisContext.encapsulatedRespLen);
       }
       /* Add your code here */
       break;
 
     default:
       /* Add your code here */
+      LOG_INFO("CDC_OTHER_CMD");
       break;
   }
 
@@ -218,6 +231,7 @@ static int8_t CDC_RNDIS_Itf_Process(USBD_HandleTypeDef *pdev)
 
   if ((hcdc_cdc_rndis != NULL) && (hcdc_cdc_rndis->LinkStatus != 0U))
   {
+    LOG_INFO("CDC_RNDIS_Itf_Process");
     /*
        Add your code here
        Read a received packet from the Ethernet buffers and send it
