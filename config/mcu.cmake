@@ -1,6 +1,7 @@
 # region MCU GLOBAL PROPERTY
 set(V15_1_CDC_TARGET               fw_cdc_rev15_1)
 set(V15_1_COMP_TARGET              fw_comp_rev15_1)
+set(V14_TARGET                     fw_rev14)
 
 # region RTT
 set(RTT_LIB rtt)

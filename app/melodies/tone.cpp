@@ -24,21 +24,10 @@ static void set_buzzer_pin(bool state)
 }
 
 
-void delay(double ms)
-{
-    dwt_delay_us((uint32_t)(ms * 1000));
-}
-
 void delay(uint32_t ms)
 {
     dwt_delay_us(ms * 1000);
 }
-
-void delay(int32_t ms)
-{
-    dwt_delay_us(abs(ms) * 1000);
-}
-
 
 void tone(uint32_t frequency, uint32_t duration)
 {

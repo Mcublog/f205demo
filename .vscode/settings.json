@@ -7,10 +7,7 @@
     ],
     "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: Microsoft, ColumnLimit: 80, IndentWidth: 4}",
     "diffEditor.ignoreTrimWhitespace": false,
-    "cmake.generator": "Unix Makefiles",
+    // "cmake.generator": "Unix Makefiles",
     "cortex-debug.variableUseNaturalFormat": false,
-    "files.associations": {
-        "log_libs.h": "c",
-        "usbd_composite.h": "c"
-    }
+    "C_Cpp.autoAddFileAssociations": false
 }

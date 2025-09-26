@@ -1510,6 +1510,12 @@ static uint8_t USBD_CDC_RNDIS_ProcessQueryMsg(USBD_HandleTypeDef *pdev,
     QueryResponse->Status = CDC_RNDIS_STATUS_SUCCESS;
     break;
 
+  case OID_GEN_PHYSICAL_MEDIUM:
+    QueryResponse->InfoBufLength = sizeof(uint32_t);
+    QueryResponse->InfoBuf[0] = CDC_RNDIS_MEDIUM_802_3;
+    QueryResponse->Status = CDC_RNDIS_STATUS_SUCCESS;
+    break;
+
   case OID_802_3_PERMANENT_ADDRESS:
   case OID_802_3_CURRENT_ADDRESS:
     QueryResponse->InfoBufLength = 6U;
