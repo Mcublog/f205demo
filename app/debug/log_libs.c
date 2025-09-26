@@ -28,4 +28,5 @@ void log_array_printf(const char *prefix, const char *array, size_t size)
     puts(prefix);
     for (size_t i = 0; i < size; i++)
         printf("0x%02x ", array[i]);
+    puts("\n");
 }

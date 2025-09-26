@@ -134,8 +134,11 @@ void play(const int32_t *melody, size_t melodySize, int tempo)
 void application(void)
 {
     LOG_INFO("Version: %s", FW_VERSION);
+
+#ifndef REV14
     HAL_GPIO_WritePin(ON_3V3_P_GPIO_Port, ON_3V3_P_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(ON_5V_GPIO_Port, ON_5V_Pin, GPIO_PIN_SET);
+#endif
 
     // eeprom_test();
     dwt_init();
@@ -149,7 +152,9 @@ void application(void)
 
     while (1)
     {
-        HAL_GPIO_TogglePin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
+        HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, GPIO_PIN_SET);
+        delay((uint32_t)25);
+        HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, GPIO_PIN_RESET);
         delay((uint32_t)250);
     }
 }
