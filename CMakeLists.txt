@@ -17,7 +17,7 @@ endif()
 # endregion
 
 # Set defines
-project(f205_demo VERSION 0.1.0 LANGUAGES C CXX ASM)
+project(f205_demo VERSION 0.3.0 LANGUAGES C CXX ASM)
 
 set_property(GLOBAL PROPERTY RULE_MESSAGES OFF)
 
