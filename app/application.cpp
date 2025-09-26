@@ -143,18 +143,18 @@ void application(void)
     // eeprom_test();
     dwt_init();
 
-    // int melodyCount = sizeof(melodySizes) / sizeof(uint32_t);
+    int melodyCount = sizeof(melodySizes) / sizeof(uint32_t);
     int melodyIndex = 0;
 
-    // play(melody[melodyIndex], melodySizes[melodyIndex], (int)(300));
+    play(melody[melodyIndex], melodySizes[melodyIndex], (int)(300));
 
     // bumer(0);
 
     while (1)
     {
         HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, GPIO_PIN_SET);
-        delay((uint32_t)25);
+        delay(25);
         HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, GPIO_PIN_RESET);
-        delay((uint32_t)250);
+        delay(250);
     }
 }
